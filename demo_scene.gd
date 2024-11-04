@@ -1,9 +1,16 @@
 extends Control
 
 var a:Array[Array]
+var name_random:Array
+var aux:PackedByteArray
+var name_sed = "asdkgfjghtyeur"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var my_seed = "gkfkfdjgfjgvgtv".hash()
+	seed(my_seed)
+	
+	
 	if $Table.auto_reload:
 		a.append(["This", "data", "loaded", "on"])
 		a.append(["the", "_ready", "func"])
@@ -18,10 +25,15 @@ func _process(_delta):
 
 
 func _on_add_btn_pressed():
-	var array_long:Array = ["This", "Array", "is", "to", "long"]
+	aux = name_sed.to_utf8_buffer()#PackedByteArray.get_string_from_utf8
+	name_random = Array(aux)
+	name_random.shuffle()
+	var b22 = randi()
+	
+	var array_long:Array = [array_to_string(name_random), "Array", "is", b22, "long"]
 	var array_short:Array = ["And this", "is to", "short"]
 	$Table.add_row(array_long)
-	$Table.add_row(array_short)
+	#$Table.add_row(array_short)
 	
 
 
@@ -60,3 +72,12 @@ func _on_table_double_click(pos: Vector2i, key:Key) -> void:
 	print("This is the Vector2i of the double clicked cell: ", pos)
 	print("And the cell value ist: ", $Table.table[pos.y][pos.x])
 	print("The pressed key was: ", key)
+
+
+
+func array_to_string(arr: Array) -> String:
+	var s = ""
+	for i in arr:
+		var char_ascii = char(i)
+		s += char_ascii
+	return s

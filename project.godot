@@ -17,8 +17,12 @@ config/icon="res://icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_tree_table/plugin.cfg")
+enabled=PackedStringArray()
 
 [filesystem]
 
 import/blender/enabled=false
+
+[rendering]
+
+renderer/rendering_method="mobile"

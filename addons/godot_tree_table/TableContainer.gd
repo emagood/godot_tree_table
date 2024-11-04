@@ -218,6 +218,14 @@ func on_column_title_clicked(column:int, mouse_button_index:int) -> void:
 
 # -- custom sorter --
 static func custom_sorter_ascending(a, b, column:int) -> bool:
+	var tipo_a = typeof(a[column])
+	var tipo_b = typeof(b[column])
+	
+	if tipo_a == TYPE_INT :
+		a[column] = str(a[column])
+	if tipo_b == TYPE_INT:
+		b[column] = str(b[column])
+		
 	if a[column] == "----":
 		return false
 	if a[column] <= b[column]:
@@ -225,6 +233,14 @@ static func custom_sorter_ascending(a, b, column:int) -> bool:
 	return false
 
 static func custom_sorter_descending(a, b, column:int) -> bool:
+	var tipo_a = typeof(a[column])
+	var tipo_b = typeof(b[column])
+	
+	if tipo_a == TYPE_INT :
+		a[column] = str(a[column])
+	if tipo_b == TYPE_INT:
+		b[column] = str(b[column])
+		
 	if a[column] == "----":
 		return false
 	if a[column] >= b[column]:
